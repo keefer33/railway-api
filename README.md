@@ -13,7 +13,7 @@ Express + TypeScript backend that proxies the [Railway GraphQL API](https://docs
 
 ### Requirements
 
-- Node.js 20+
+- Node.js 22+
 - A Supabase project (for auth)
 - A Railway account token and workspace id
 

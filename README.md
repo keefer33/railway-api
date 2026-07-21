@@ -6,7 +6,7 @@ Express + TypeScript backend that proxies the [Railway GraphQL API](https://docs
 
 - Supabase JWT auth on Railway routes
 - Templates: list recommended, search, detail, deploy
-- Projects: list (user-owned), create, detail, environments
+- Projects: list (user-owned), create, delete, detail, environments
 - Deployments: stop, restart, redeploy
 
 ## Getting started
@@ -80,10 +80,15 @@ Railway (all require Bearer auth), mounted at `/railway`:
 | `GET` | `/railway/templates/search` | Search templates |
 | `GET` | `/railway/templates/:templateId` | Template detail |
 | `POST` | `/railway/templates/deploy` | Deploy a template into a project |
-| `GET` | `/railway/projects` | Current user's projects |
+| `GET` | `/railway/projects` | Current user's projects with Railway summary counts |
 | `POST` | `/railway/projects/create` | Create a Railway project + store ownership |
+| `POST` | `/railway/projects/:projectId/update` | Update Railway project name/description + sync ownership row |
+| `POST` | `/railway/projects/:projectId/delete` | Delete a Railway project + remove ownership row |
 | `GET` | `/railway/projects/:projectId` | Project detail (envs, groups, services, deployments) |
 | `GET` | `/railway/projects/:projectId/environments` | Project environments |
+| `GET` | `/railway/projects/:projectId/services/:serviceId/variables` | Service variables for an environment |
+| `POST` | `/railway/projects/:projectId/services/:serviceId/variables` | Upsert service variables (`variableCollectionUpsert`) |
+| `POST` | `/railway/projects/:projectId/services/:serviceId/delete` | Delete a service in an environment (`serviceDelete`) |
 | `POST` | `/railway/deployments/:deploymentId/:action` | `stop` \| `restart` \| `redeploy` |
 
 ## Docker
